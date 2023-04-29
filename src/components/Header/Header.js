@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/icon/logo.svg';
+import Portal from '../Portal/Portal';
+import ModalAuth from '../ModalAuth/ModalAuth';
 
 const Header = () => {
+
+  const [isLoginModal, setIsLoginModal] = useState(false);
+
+  const toggleLoginModalOpen = () => {
+    setIsLoginModal(!isLoginModal);
+  }
+
   return (
     <header className='store-header'>
       <div className='container'>
@@ -24,13 +33,15 @@ const Header = () => {
           <div className='store-header__buttons'>
             <span className='store-header__user-name'>Test name</span>
 
-            <button className='button button-primary button-auth'>
+            <button onClick={toggleLoginModalOpen} className='button button-primary button-auth'>
               <span className='button-auth-svg'></span>
               <span className='button-text'>Увійти</span>
             </button>
           </div>
         </div>
       </div>
+
+      {isLoginModal && <Portal><ModalAuth onClose={toggleLoginModalOpen} /></Portal>}
     </header>
   )
 }

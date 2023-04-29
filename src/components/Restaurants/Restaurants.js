@@ -1,13 +1,18 @@
 import React from 'react';
+
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
+import Spinner from '../Spinner/Spinner';
+import usePageData from '../../custom-hooks/usePageData';
 
 const Restaurants = () => {
-
-  // data
+  const restaurantsList = usePageData('partners');
 
   return (
     <div className='restaurants__cards cards'>
-      <RestaurantCard />
+      {restaurantsList 
+        ? restaurantsList.map(restaurant => <RestaurantCard key={restaurant.image} {...restaurant} />)
+        : <Spinner />
+      }
     </div>
   )
 }

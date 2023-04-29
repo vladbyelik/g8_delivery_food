@@ -19,7 +19,7 @@ function App() {
             </Routes>
 
             <Routes>
-              <Route path="/:products" element={<ProductList />}/>
+              <Route path="/restaurant/:products" element={<ProductList />}/>
             </Routes>
 
             <Footer />

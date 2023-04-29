@@ -1,21 +1,40 @@
 import React from 'react';
-import img from '../../assets/img/pizza-plus/preview.jpg';
+import { useNavigate } from 'react-router-dom';
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+
+  const {
+    name, 
+    image,
+    stars,
+    price,
+    kitchen,
+    products,
+    time_of_delivery
+    } = props;
+
+  const navigate = useNavigate();
+
+  const img = require(`../../assets/${image}`);
+
+  const handleClick = () => {
+    navigate(`/restaurant/${products}`);
+  };
+
   return (
-    <div className='card card-restaurant'>
+    <div className='card card-restaurant' onClick={handleClick}>
       <img src={img} alt='restaurant' />
       
       <div className='card-text'>
         <div className='card-heading'>
-          <h3 className='card-title'>Margarita</h3>
-          <span className='card-tag tag'>time of delivery</span>
+          <h3 className='card-title'>{name}</h3>
+          <span className='card-tag tag'>{time_of_delivery}</span>
         </div>
 
         <div className='card-info'>
-          <div className='rating'>4.5</div>
-          <div className='price'>Від 200 hrn</div>
-          <div className='category'>Kitchen</div>
+          <div className='rating'>{stars}</div>
+          <div className='price'>Від {price} грн.</div>
+          <div className='category'>{kitchen}</div>
         </div>
       </div>
     </div>
